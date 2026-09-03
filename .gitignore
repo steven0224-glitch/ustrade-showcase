@@ -1,0 +1,41 @@
+# 런타임 산출 (이제 USTRADE_HOME 하위 — 프로젝트 밖이 기본이지만 안전상 무시)
+state/
+logs/
+data_cache/
+fmp_cache/
+results/
+
+# 비밀 — 절대 커밋 금지
+*.key
+.env
+*.pem
+
+# 대시보드 생성물 — 실 계좌 스냅샷(현금·보유종목) 포함. build_data.py 가 재생성하므로 git 추적 금지.
+dashboard/data.js
+
+# dual-team review 대용량 원시 덤프 (재생성 가능 — 산출 .md 만 추적)
+archive/reviews/*/raw_result.json
+
+# 대용량 로컬 백업 (예: MSIX 오버레이 tar.gz 205MB) — GitHub 100MB 하드리밋, 커밋 금지
+archive/*.tar.gz
+
+# 파이썬
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# dashboard runtime artifacts (2026-07-10)
+dashboard/pythonw.log
+dashboard/report.html
+
+# 프로젝트 스코프 스킬 정션 (scope-skill.mjs 산물, 머신 로컬) — deploy_push의 git add -A 오염 방지
+.claude/skills/*
+!.claude/skills/wood-thesis-review

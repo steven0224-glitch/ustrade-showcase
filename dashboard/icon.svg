@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#26241F"/>
+  <rect x="40" y="40" width="432" height="432" rx="84" fill="#EAE4D8"/>
+  <!-- cand…line -->
+  <polyline points="96,320 168,300 240,344 312,200 384,236 416,150"
+            fill="none" stroke="#2FB35A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="416" cy="150" r="26" fill="#2FB35A"/>
+  <circle cx="416" cy="150" r="44" fill="none" stroke="#2FB35A" stroke-width="8" opacity="0.45"/>
+  <text x="256" y="430" font-family="-apple-system,Segoe UI,sans-serif" font-size="86"
+        font-weight="800" text-anchor="middle" fill="#26241F">AI</text>
+</svg>

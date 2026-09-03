@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"   # 로컬은 3.14 — 핀 버전이 3.12 휠 없으면 조정
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements_vm.txt
+      - name: Run live-safety suites (네트워크 불필요 — 전부 monkeypatch)
+        # canslim(A엔진)·stage1~8(vectorbt 등)은 CI 환경에 의존성 없음 → run_tests 가
+        # 실거래 안전 스위트만 돌림. USTRADE_CI=1 로 canslim 추가 제외.
+        env:
+          USTRADE_CI: "1"
+        run: python tools/run_tests.py

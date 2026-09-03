@@ -1,0 +1,14 @@
+# VM 배포용 런타임 의존성 (PC venv 버전 고정). pip 가 전이 의존성 자동 해결.
+requests==2.34.2
+certifi==2026.5.20   # data.py 가 top-level import — 전이의존이지만 명시 고정(cert 검증 동작 드리프트 방지)
+pandas==2.3.3
+numpy==2.4.6
+yfinance==1.4.1
+pandas_market_calendars==5.4.0
+python-dateutil==2.9.0.post0
+pytz==2026.2
+lxml==6.1.1
+beautifulsoup4==4.14.3
+multitasking==0.0.13
+peewee==4.0.6
+curl_cffi==0.15.0

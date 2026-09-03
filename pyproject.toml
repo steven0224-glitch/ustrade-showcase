@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ustrade"
+version = "0.1.0"
+description = "US equity systematic backtest + unattended live-trading scaffold (Toss)"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas==2.3.3",
+    "numpy==2.4.6",
+    "yfinance==1.4.1",
+    "matplotlib==3.10.9",
+    "backtrader==1.9.78.123",
+    "vectorbt==1.0.0",
+    "pandas-market-calendars==5.4.0",
+    "requests==2.34.2",
+    "schedule==1.2.2",
+    "certifi==2026.5.20",
+]
+
+# ⚠️ 배포 전 라이선스 확인 필요: vectorbt(Apache+Commons Clause — 상용판매 제한),
+# backtrader(GPL-3.0 — 카피레프트). 상용 배포 시 대체/상용라이선스 검토. 상단 README 면책 참조.
+
+[project.optional-dependencies]
+dev = ["pytest==9.0.3"]
+
+[project.scripts]
+ustrade-run = "run_live:main"
+ustrade-heartbeat = "heartbeat:main"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+python_files = ["test_suites.py"]   # tests_stage*.py 는 main()을 통해서만 실행
+
+[tool.setuptools]
+py-modules = ["run_live", "live_engine", "live_select", "live_risk", "live_rebalance",
+              "live_demo", "live_filter_demo", "scheduler", "notify", "data", "universe",
+              "calendar_util", "paths", "fmp_client", "fmp_factors",
+              "backtest", "backtest_portfolio", "backtest_risk", "sweep", "walkforward", "eval_factor"]
+
+[tool.setuptools.packages.find]
+include = ["broker*", "strategies*", "engines*"]
