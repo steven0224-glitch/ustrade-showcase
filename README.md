@@ -1,4 +1,4 @@
-# ustrade — US-stock strategy lab and paper-trading system (showcase snapshot)
+# ustrade: US-stock strategy lab and paper-trading system (showcase snapshot)
 
 > 한국어: [README.ko.md](README.ko.md)
 
@@ -16,7 +16,7 @@ enabled in this build; the system has been running unattended paper trading
 only, on a VM, since 2026-08-09. This repo exists to show how the author
 works with Claude Code on a multi-month project, not to sell a strategy.
 
-## Performance caveat — lower your expectations
+## Performance caveat: lower your expectations
 
 The Sharpe/MDD/return numbers that appear in [README.ko.md](README.ko.md) and
 in the backtest tooling are **hypothetical, in-sample backtest results**, not
@@ -32,13 +32,13 @@ a live track record and not a promise of future returns.
   that list leaks future information into the past. Concentrated portfolios
   (top-3) amplify this into non-repeatable numbers.
 - Paper/small-size verification is required before any real trade, and the
-  system treats "unattended automation + a bug" as equivalent to a real loss
-  — the guardrail layer (below) is the last line of defense, not the first.
+  system treats "unattended automation + a bug" as equivalent to a real loss.
+  The guardrail layer (below) is the last line of defense, not the first.
 
 The value of this project is the *methodology* it produced (parameter
 overfitting is measurable via train/test rank correlation, volatility
 targeting is the cheapest way to cut drawdown, stop-losses hurt a momentum
-strategy) — not an absolute-return claim.
+strategy), not an absolute-return claim.
 
 ## How Claude Code is used
 
@@ -47,14 +47,14 @@ developer) designed and iterated this whole system with Claude Code as the
 primary development partner: architecture decisions, implementation, test
 suites (23 suite files under `tests/`), debugging production incidents (e.g. a
 Windows Task Scheduler env-variable caching bug that silently disabled a
-fundamentals filter for three days — documented in `README.ko.md`), the
+fundamentals filter for three days, documented in `README.ko.md`), the
 "desk" memory structure described below, adversarial dual-team code reviews
 before merging risk-relevant changes, deploy scripts, and VM operations for
 the unattended paper-trading run. Commits carry `Co-Authored-By: Claude`
 trailers.
 
 One concrete artifact of that review process:
-`archive/reviews/20260622_122457_dualteam/FINAL_SYNTHESIS.md` — two adversarial
+`archive/reviews/20260622_122457_dualteam/FINAL_SYNTHESIS.md`: two adversarial
 review teams (one framed as a red team hunting for order-path, guardrail, and
 silent-failure bugs) independently audit a change and their findings are
 synthesized before anything ships to the live-trading path.
@@ -97,7 +97,7 @@ investing philosophies against the same starting capital: 7 base personas
 `livermore_ctl`, `chartist_ctl`) that isolate a rule change or a
 curation-bias effect from the base persona.
 
-## The house/desk structure — memory that outlives sessions
+## The house/desk structure: memory that outlives sessions
 
 Skills and scripts are stateless: running a screener 100 times doesn't make
 the 101st run remember what the first 100 learned. This repo is organized as
@@ -107,7 +107,7 @@ counts as done, what escalates to a human), a `goals.md`, and an
 append-only `memory.md`.
 
 The rule that makes this useful: **no desk grades its own work.** Research
-output is reviewed by strategy, strategy by risk, risk by performance — and a
+output is reviewed by strategy, strategy by risk, risk by performance, and a
 rejection is written back to the author desk's `memory.md` with a reason.
 An un-recorded rejection just repeats. See `desks/README.md` for the full
 rationale and the review-pair table. `HOUSE.md` is the compiled operating
@@ -117,7 +117,7 @@ re-deriving limits from code each time.
 
 `docs/paper-trading-dod.md` is a finite, checkable definition-of-done list
 that the paper-trading environment had to clear before the current 12-week
-experiment was allowed to start — each item needs a stated verification
+experiment was allowed to start. Each item needs a stated verification
 method, not just a completion claim, and adding an item to the list counts
 as delaying completion, not as free scope.
 
@@ -131,7 +131,7 @@ hourly "deadman" watch (`tools/paper_watch.py`) pages if the daily run
 doesn't show up within its window. The judgment framework separates an
 **operating gate** (no-show rate, kill-switch trips, journal integrity), a
 **risk gate** (max drawdown ≤ 20%), and a **performance verdict**
-(t-statistic vs. SPY, with an "undecided, extend the window" branch) — it is
+(t-statistic vs. SPY, with an "undecided, extend the window" branch). It is
 explicit that this experiment cannot establish statistical significance for
 the strategy's edge in any practical timeframe.
 
@@ -176,4 +176,4 @@ live-trading checklist: [README.ko.md](README.ko.md).
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT, see [LICENSE](LICENSE).
